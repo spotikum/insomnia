@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Courier extends Model
+class Couriers extends Model
 {
-    //
+    protected $table = 'couriers';
 }

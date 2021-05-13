@@ -2,7 +2,7 @@
 
 @section('content')
 @if(Session::has('berhasil'))
-        <div class="alert alert-success">
+        <div class="alert alert-success ">
             <p>{{Session::get('berhasil') }}</p>
         </div>
 @endif
@@ -17,41 +17,35 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            
-            <a href="category/create" class="btn btn-primary btn-icon-split mb-3">
+            <a href="courier/create" class="btn btn-primary btn-icon-split mb-3 ">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-square"></i>
                 </span>
                 <span class="text">Tambah Data</span>
             </a>
             <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <colgroup>
-                    <col span="1" style="width: 5%;">
-                    <col span="1" style="width: 75%;">
-                    <col span="1" style="width: 20%;">
-                </colgroup>
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Nama Courier</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($Category as $productCategory)
+                    @forelse ($couriers as $courier)
                     <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$productCategory->category_name}}</td>
+                    <td>{{$courier->courier}}</td>
                     <td class="text-center">
-                        <form action="/category/{{$productCategory->id}}" method="POST">
+                        <form action="/courier/{{$courier->id}}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
 
                         {{-- TOMBOL EDIT --}}
-                        <a href="/category/{{$productCategory->id}}/edit" class="btn btn-primary"> 
+                        <a href="/courier/{{$courier->id}}/edit" class="btn btn-primary"> 
                             <i class="fas fa-pencil-alt"></i> Edit
                         </a>
-                        
+
                         {{-- TOMBOL DELETE --}}
                         <button type="submit" name="submit" onclick="return confirm('Anda yakin ingin menghapus data ini?')"  class="btn btn-danger"> 
                             <i class="fas fa-trash"></i> Delete
@@ -70,5 +64,4 @@
     </div>
 
 </div>
-
 @endsection
