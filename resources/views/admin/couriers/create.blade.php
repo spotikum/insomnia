@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <h1 class="h3 text-dark">Create New Data</h1>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -27,7 +25,7 @@
 
 
             <div class="float-right">
-                <a href="/couriers" class="btn btn-info ">
+                <a href="/discount" class="btn btn-info ">
                     <i class="fas fa-arrow-left"></i>
                     Kembali
                 </a>

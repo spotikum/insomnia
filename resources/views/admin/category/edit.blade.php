@@ -1,14 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<h1 class="h3 text-dark">Create New Data</h1>
+<h1 class="h3 text-dark">Edit Data</h1>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="font-weight-bold text-primary">Form</h6>
     </div>
     <div class="card-body">
-        <form action="/category/
-        {{$Category->id}}" method="POST" enctype="multipart/form-data" name="data_product_category" id="data_product_category">
+        <form action="/category/{{$Category->id}}" method="POST" enctype="multipart/form-data" name="data_product_category" id="data_product_category">
             @csrf
             {{ method_field('PUT') }}
             <div class="form-group row">
@@ -26,7 +25,7 @@
 
 
             <div class="float-right">
-                <a href="/product-category" class="btn btn-info ">
+                <a href="/category" class="btn btn-info ">
                     <i class="fas fa-arrow-left"></i>
                     Kembali
                 </a>

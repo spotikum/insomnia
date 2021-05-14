@@ -31,6 +31,11 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Courier</span></a>
         </li>
+        <li class="nav-item{{ request()->is('discount') ? ' active' : ''}}">
+            <a class="nav-link" href="{{ url('discount') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Discount</span></a>
+        </li>
     <hr class="sidebar-divider">
 </ul>
 <!-- End of Sidebar -->

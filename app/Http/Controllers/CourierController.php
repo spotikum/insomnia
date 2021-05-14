@@ -36,6 +36,24 @@ class CourierController extends Controller
         return redirect('/couriers')->with('berhasil','Anda Berhasil menambahkan data courier');
     }
 
+    public function edit($id)
+    {
+        //Menampilkan tampilan edit
+        $courier=Couriers::where('id',$id)->first(); 
+        return view ('admin.couriers.edit',compact(['courier']));
+    }
+
+    public function update(Request $request, $id)
+    {
+        //Mmeperbarui data
+        Couriers::where('id',$id)->update([
+                    'courier'=>$request->courier,
+                ]);
+        return redirect('/couriers')->with('berhasil','Data Courier Berhasil dirubah');
+    }
+
+    
+
     public function destroy($id)
     {
         //Menghapus data

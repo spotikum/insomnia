@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Product;
 use App\ProductImages;
 use App\ProductDetail;
+use App\ProductDiscount;
+
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -51,20 +54,7 @@ class ProductController extends Controller
         $products->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $products->save();
 
-        //Menyimpan nama gambar dan menaruh file gambar di public
-        // $productImage = new ProductImages;
-        // $productImage->product_id = $products->id; 
-        // $file = $request->file('gambar_product');
-        // $name= $file->getClientOriginalName();
-        // if (ProductImages::where('image_name',$name)->exists()){
-        //     $name = uniqid().'-'.$name;
-        // }
-        // $productImage->image_name = $name;
-        // $productImage->created_at = Carbon::now()->format('Y-m-d H:i:s');
-        // $productImage->updated_at = Carbon::now()->format('Y-m-d H:i:s'); 
-        // $file->move('img',$name); 
-        // $productImage->save();
-
+        //Menyimpam gambar/store ke public
         if($request->hasfile('image_name')){
             $i = 0;
 
@@ -97,4 +87,67 @@ class ProductController extends Controller
         return redirect('/product')->with('berhasil','Anda Berhasil menambahkan data product');
         
     }
+
+    public function edit($id)
+    {
+        $Category=Category::all();
+        $product=Product::where('id',$id)->first(); 
+        return view ('admin.product.edit',compact(['Category','product']));
+    }
+
+    public function update(Request $request, $id)
+    {
+        Product::where('id',$id)->update([
+            'product_name'=>$request->nama_barang,
+            'price'=>$request->harga_product,
+            'description'=>$request->deskripsi_product,
+            'stock'=>$request->stock_product,
+            'weight'=>$request->berat_product,
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        if($request->hasfile('image_name')){
+            $i = 0;
+
+            foreach ($request->file('image_name') as $image) {
+                $folderName = 'product_image';
+                $fileName = $id.'_'.$i;
+                $fileExtension = $image->getClientOriginalExtension();
+                $fileNameToStorage = $fileName.'_'.time().'.'.$fileExtension;
+                $filePath = $image->storeAs('public/'.$folderName , $fileNameToStorage);
+
+                $images = new ProductImages();
+                $images->product_id = $id;
+                $images->image_name = $fileNameToStorage;
+                $images->save();
+
+                $i++;
+            }
+            return redirect('/product')->with('berhasil','Data Product Berhasil dirubah');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $images = ProductImages::where('product_id',$id)->get();
+        foreach ($images as $image) {
+            Storage::delete('public/product_image/'.$image->image_name);
+            $image->delete();
+        }
+
+        $product =  Product::find($id);
+        $product->RelasiProductCategory()->detach();
+        $product->delete();
+        return redirect('/product')->with('berhasil','Anda Berhasil Menghapus Product');
+    }
+
+    public function imageDelete($id)
+    {
+        $image = ProductImages::find($id);
+        Storage::delete('public/product_image/'.$image->image_name);
+        $image->delete();
+        return back()->with('berhasil','Image successfully deleted!');
+    }
+
+
 }
