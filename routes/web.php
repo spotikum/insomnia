@@ -38,12 +38,16 @@ Route::prefix('admin')->group(function (){
 
 // Route Product
 Route::resource('/product', 'ProductController');
+Route::delete('product/{product}/edit', 'ProductController@imageDelete')->name('product.imageDelete');
 
 // Route Category
 Route::resource('/category', 'CategoryController');
 
 // Route Courier
 Route::resource('/couriers', 'CourierController');
+
+// Route Diskon
+Route::resource('/discount', 'DiscountController');
 
 
 

@@ -70,6 +70,9 @@
                             <button class="btn btn-default" data-toggle="modal" data-target="#modalViewImages-{{ $product->id}}">View Images</button>
                         </td>
                         <td class="text-center">
+                        <form action="/product/{{$product->id}}" method="POST">
+                                @csrf
+                                {{ method_field('DELETE') }}
                             {{-- TOMBOL EDIT --}}
                             <a href="/product/{{$product->id}}/edit" class="btn btn-primary"> 
                                 <i class="fas fa-pencil-alt"></i> 
@@ -79,6 +82,7 @@
                             <button type="submit" name="submit" onclick="return confirm('Anda yakin ingin menghapus data ini?')"  class="btn btn-danger"> 
                                 <i class="fas fa-trash"></i> 
                             </button>
+                        </form>
                         </td>
                     </tr>
                     @empty
