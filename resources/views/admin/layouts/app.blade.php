@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @yield('head')
+
 </head>
 
 <body id="page-top">
@@ -98,6 +100,8 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('assets/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('assets/js/demo/chart-pie-demo.js')}}"></script>
+
+    @yield('script')
 
 </body>
 

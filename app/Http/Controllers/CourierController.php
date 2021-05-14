@@ -17,4 +17,31 @@ class CourierController extends Controller
         $couriers = Couriers::all();
         return view ('admin.couriers.index',compact (['couriers']));
     }
+    
+    public function create()
+    {
+        //Menampilkan halaman penambahan data Couriear
+        return view ('admin.couriers.create');
+    }
+
+    public function store(Request $request)
+    {
+        //Menyimpan data courier
+        if(Couriers::where('courier',$request->courier)->exists()){
+            return redirect('/couriers')->with('gagal','Gagal menambahkan data, data courier sudah terdaftar');
+        }
+        $couriers = new Couriers;
+        $couriers->courier = $request->courier;
+        $couriers->save();
+        return redirect('/couriers')->with('berhasil','Anda Berhasil menambahkan data courier');
+    }
+
+    public function destroy($id)
+    {
+        //Menghapus data
+        $courier=Couriers::find($id);
+        $courier->delete();
+        return redirect('/couriers')->with('berhasil','Data Courier Berhasil Dihapus');
+    }
+
 }

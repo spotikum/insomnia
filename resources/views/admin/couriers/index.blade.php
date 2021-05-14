@@ -17,7 +17,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <a href="courier/create" class="btn btn-primary btn-icon-split mb-3 ">
+            <a href="couriers/create" class="btn btn-primary btn-icon-split mb-3 ">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-square"></i>
                 </span>
@@ -37,12 +37,12 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$courier->courier}}</td>
                     <td class="text-center">
-                        <form action="/courier/{{$courier->id}}" method="POST">
+                        <form action="/couriers/{{$courier->id}}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
 
                         {{-- TOMBOL EDIT --}}
-                        <a href="/courier/{{$courier->id}}/edit" class="btn btn-primary"> 
+                        <a href="/couriers/{{$courier->id}}/edit" class="btn btn-primary"> 
                             <i class="fas fa-pencil-alt"></i> Edit
                         </a>
 
