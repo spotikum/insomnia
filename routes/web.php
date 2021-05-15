@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Root 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.dashboard');
 });
 
 Auth::routes(['verify' => true]);
