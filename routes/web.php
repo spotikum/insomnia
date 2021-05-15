@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Root 
-Route::get('/', function () {
-    return view('welcome');
-});
+// // Root 
+// Route::get('/', function () {
+//     return view('user.dashboard');
+// });
+
+Route::resource('/', 'user\DashboardController');
 
 Auth::routes(['verify' => true]);
 
