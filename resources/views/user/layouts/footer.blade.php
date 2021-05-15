@@ -5,16 +5,16 @@
             <div class="col-lg-4 col-md-6 col-sm-7">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="user/index.html"><img src="user/img/logo.png" alt=""></a>
+                        <a href="/"><img src="user/img/logo.png" alt=""></a>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     cilisis.</p>
                     <div class="footer__payment">
-                        <a href="#"><img src="user/img/payment/payment-1.png" alt=""></a>
-                        <a href="#"><img src="user/img/payment/payment-2.png" alt=""></a>
-                        <a href="#"><img src="user/img/payment/payment-3.png" alt=""></a>
-                        <a href="#"><img src="user/img/payment/payment-4.png" alt=""></a>
-                        <a href="#"><img src="user/img/payment/payment-5.png" alt=""></a>
+                        <a href="https://www.mastercard.co.id"><img src="user/img/payment/payment-1.png" alt=""></a>
+                        <a href="https://www.visa.co.id"><img src="user/img/payment/payment-2.png" alt=""></a>
+                        <a href="https://www.discover.com"><img src="user/img/payment/payment-3.png" alt=""></a>
+                        <a href="https://www.paypal.com"><img src="user/img/payment/payment-4.png" alt=""></a>
+                        <a href="https://www.cirrusresponse.com"><img src="user/img/payment/payment-5.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -48,11 +48,11 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="facebook.com"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+                        <a href="youtube.com"><i class="fa fa-youtube-play"></i></a>
+                        <a href="instagram.com"><i class="fa fa-instagram"></i></a>
+                        <a href="pinterest.es"><i class="fa fa-pinterest"></i></a>
                     </div>
                 </div>
             </div>
