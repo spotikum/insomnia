@@ -50,31 +50,6 @@
             </div>
             @endforeach
             @endif
-
-
-
-            {{-- @if(sizeof($produk)>0)
-            @foreach($produk as $p)
-            <div class="col-lg-4">
-                <div class="card">
-                <img src="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">{{$p->product_name}}</h4>
-                    <p class="card-text">{{$p->description}}</br>IDR : {{number_format($p->price, '0', ',', '.')}}</br>Rating : {{$p->product_rate}} from 5</br>Berat : {{$p->weight}} kg</br>Stok : {{$p->stock}}</p>
-                    @if(Auth::guard('user')->check())
-                    <div style="text-align: right;">
-                    <a href="{{ route('buy', ['id' => $p->id]) }}" class="btn btn-primary" style="width: 100px"></i>Beli</a>
-                    </div>
-                    @endif
-                </div>
-                </div>
-            </div>
-            @endforeach
-            @else
-            <div style="text-align: center;">
-                <h4>Maaf, produk masih kosong.</h4>
-            </div>
-            @endif --}}
         </div>
     </div>
 </section>
