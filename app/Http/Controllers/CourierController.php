@@ -1,65 +1,64 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Couriers;
+
 use Illuminate\Http\Request;
+use App\Models\Courier;
+use App\Models\Product_categorie;
 
 class CourierController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
+    function index(){
+		$data['category'] = Product_categorie::all();
+    	$data['cou'] = Courier::all();
+    	return view('admin.listcourier', $data);
     }
 
-    public function index()
-    {
-        //Menampilkan daftar Courier
-        $couriers = Couriers::all();
-        return view ('admin.couriers.index',compact (['couriers']));
-    }
-    
-    public function create()
-    {
-        //Menampilkan halaman penambahan data Couriear
-        return view ('admin.couriers.create');
-    }
+    function savecou(Request $req){
+    	$req->validate([
+    		'courier' => 'required|unique:couriers'
+    	],[
+    		'courier.required' => "Nama kurir harus diisi",
+    		'courier.unique' => "Nama kurir telah digunakan",
+    	]);
 
-    public function store(Request $request)
-    {
-        //Menyimpan data courier
-        if(Couriers::where('courier',$request->courier)->exists()){
-            return redirect('/couriers')->with('gagal','Gagal menambahkan data, data courier sudah terdaftar');
-        }
-        $couriers = new Couriers;
-        $couriers->courier = $request->courier;
-        $couriers->save();
-        return redirect('/couriers')->with('berhasil','Anda Berhasil menambahkan data courier');
+    	try {
+    		Courier::create([
+    			'courier' => $req->courier
+    		]);
+    		return redirect('/list/courier')->with('sukses', "Data kurir berhasil ditambahkan");
+    	} catch (Exception $e) {
+    		return redirect('/list/courier')->with('gagal', "Data kurir gagal ditambahkan");
+    	}
     }
 
-    public function edit($id)
-    {
-        //Menampilkan tampilan edit
-        $courier=Couriers::where('id',$id)->first(); 
-        return view ('admin.couriers.edit',compact(['courier']));
+    function ubahcou(Request $req){
+    	$req->validate([
+    		'courier' => 'required'
+    	],[
+    		'courier.required' => "Nama kurir harus diisi",
+    	]);
+
+    	Courier::findOrFail($req->idcou);
+
+    	try {
+    		Courier::where('id', $req->idcou)->update([
+    			'courier' => $req->courier
+    		]);
+    		return redirect('/list/courier')->with('sukses', "Data kurir berhasil diubah");
+    	} catch (Exception $e) {
+    		return redirect('/list/courier')->with('gagal', "Data kurir gagal diubah");
+    	}
     }
 
-    public function update(Request $request, $id)
-    {
-        //Mmeperbarui data
-        Couriers::where('id',$id)->update([
-                    'courier'=>$request->courier,
-                ]);
-        return redirect('/couriers')->with('berhasil','Data Courier Berhasil dirubah');
+    function hapuscou(){
+    	Courier::findOrFail($_GET['id']);
+
+    	try {
+    		Courier::where('id', $_GET['id'])->delete();
+    		return redirect('/list/courier')->with('sukses', "Data kurir berhasil dihapus");
+    	} catch (Exception $e) {
+    		return redirect('/list/courier')->with('gagal', "Data kurir gagal dihapus");
+    	}
     }
-
-    
-
-    public function destroy($id)
-    {
-        //Menghapus data
-        $courier=Couriers::find($id);
-        $courier->delete();
-        return redirect('/couriers')->with('berhasil','Data Courier Berhasil Dihapus');
-    }
-
 }
