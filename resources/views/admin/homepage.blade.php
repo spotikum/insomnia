@@ -79,7 +79,7 @@
                                 <p>Untuk menambah, mengubah, dan menghapus data master, silahkan klik menu data master dan pilih submenu dari data yang akan diolah</p>
                             </div>
                             <div class="card-footer">
-                                <h3>Sekian, terima kasih KONTOL.</h3>
+                                <h3>Sekian, terima kasih NGENTOD.</h3>
                             </div>
                         </div>
                     </div>
