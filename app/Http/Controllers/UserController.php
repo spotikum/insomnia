@@ -13,6 +13,11 @@ class UserController extends Controller
 		return view('user.homepage', $data);
 	}
 
+	function store(){
+		$data['produk'] = Product::with('gambar')->get();
+		return view('user.shop', $data);
+	}
+
 	function buyproduct(){
 		Product::findOrFail($_GET['id']);
 
