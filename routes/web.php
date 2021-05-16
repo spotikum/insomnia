@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:user','verified']], function(){
 
 Route::group(['middleware' => 'guest'], function(){
 	Route::get('/', [UserController::class, 'index'])->name('user.home');
+	Route::get('/shop', [UserController::class, 'store'])->name('user.shop');
 	Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
 	Route::get('/login/admin', [AuthController::class, 'loginadmin']);
 	Route::get('/daftar/admin', [AuthController::class, 'registeradmin'])->name('registeradmin');
