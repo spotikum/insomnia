@@ -6,9 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\user\ChartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\user\ChartController;
+use App\Http\Controllers\user\CheckoutController;
 
 Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct']);
 
@@ -40,6 +41,9 @@ Route::group(['middleware' => 'guest'], function(){
 
 	// Chart
 	Route::get('/shop/chart', [ChartController::class, 'index']);
+
+	// Checkout
+	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
 
 Route::group(['middleware' => 'auth:admin'], function(){
