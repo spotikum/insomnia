@@ -25,7 +25,7 @@
                         <ul class="product__hover">
                             <li><a href="shop/{{ $p->id }}/detail"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
+                            <li><a href="shop/chart"><span class="icon_cart_alt"></span></a></li> 
                         </ul>
                     </div>
                     <div class="product__item__text">

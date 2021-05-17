@@ -1,5 +1,10 @@
 @extends('user.layouts.app')
 
+@section('route')
+     <a href="/shop">Shop</a>
+     <span>Chart</span>
+@endsection
+
 @section('content')
 <!-- Shop Cart Section Begin -->
 <section class="shop-cart spad">

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\user\ChartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\user\ShopController;
 
@@ -36,6 +37,9 @@ Route::group(['middleware' => 'guest'], function(){
 	// Shop
 	Route::get('/shop', [ShopController::class, 'index']);
 	Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
+
+	// Chart
+	Route::get('/shop/chart', [ChartController::class, 'index']);
 });
 
 Route::group(['middleware' => 'auth:admin'], function(){
