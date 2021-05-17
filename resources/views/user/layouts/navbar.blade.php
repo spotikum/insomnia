@@ -25,8 +25,12 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
+                        @if(!Auth::guard('user')->check())
+                        <a href="{{ route('login') }}">Login</a>
+                        @else
+                        <a href="#">{{Auth::guard('user')->user()->name}}</a>
+                        <a href="{{ route('user.logout') }}">Logout</a>
+                        @endif
                     </div>
                     <ul class="header__right__widget">
                         <li><a href="#">
