@@ -23,7 +23,7 @@
                     <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}">
                         <div class="label new">New</div>
                         <ul class="product__hover">
-                            <li><a href="#"><span class="arrow_expand"></span></a></li>
+                            <li><a href="shop/{{ $p->id }}/detail"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                             <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
                         </ul>
