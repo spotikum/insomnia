@@ -24,8 +24,8 @@
                         <div class="label new">New</div>
                         <ul class="product__hover">
                             <li><a href="#"><span class="arrow_expand"></span></a></li>
-                            <li><a href="#"><span class="icon_check"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li> 
+                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
                         </ul>
                     </div>
                     <div class="product__item__text">
