@@ -1,7 +1,10 @@
 @extends('user.layouts.app')
 
-@section('content')
+@section('route')
+    <span>New</span>
+@endsection
 
+@section('content')
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
@@ -10,16 +13,6 @@
                 <div class="section-title">
                     <h4>New product</h4>
                 </div>
-            </div>
-            <div class="col-lg-8 col-md-8">
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">All</li>
-                    <li data-filter=".women">Women’s</li>
-                    <li data-filter=".men">Men’s</li>
-                    <li data-filter=".kid">Kid’s</li>
-                    <li data-filter=".accessories">Accessories</li>
-                    <li data-filter=".cosmetic">Cosmetics</li>
-                </ul>
             </div>
         </div>
         <div class="row property__gallery">
@@ -30,20 +23,26 @@
                     <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}">
                         <div class="label new">New</div>
                         <ul class="product__hover">
-                            <li><a href="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li> 
+                            <li><a href="shop/{{ $p->id }}/detail"><span class="arrow_expand"></span></a></li>
+                            <li><a href="shop/checkout"><span class="icon_bag_alt"></span></a></li>
+                            <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6><a href="#">{{$p->product_name}}</a></h6>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
+                        @if ($p->product_rate>0)
+                            <div class="rating">
+                                @for ($i = 0; $i < $p->product_rate; $i++)
+                                    <i class="fa fa-star"></i>
+                                @endfor
+                            </div>
+                        @else
+                            <div class="ratingnull">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <i class="fa fa-star"></i>
+                                @endfor
+                            </div>
+                        @endif
                         <div class="product__price">Rp.{{number_format($p->price, '0', ',', '.')}}</div>
                     </div>
                 </div>

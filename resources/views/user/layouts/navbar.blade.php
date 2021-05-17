@@ -16,7 +16,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="{{ request()->is('/') ? ' active' : ''}}"><a href="/">Home</a></li>
-                        <li class="{{ request()->is('shop') ? ' active' : ''}}"><a href="/shop">Shop</a></li>
+                        <li class="{{ request()->is('shop*') ? ' active' : ''}}"><a href="/shop">Shop</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
@@ -25,17 +25,21 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
+                        @if(!Auth::guard('user')->check())
+                        <a href="{{ route('login') }}">Login</a>
+                        @else
+                        <a href="#">{{Auth::guard('user')->user()->name}}</a>
+                        <a href="{{ route('user.logout') }}">Logout</a>
+                        @endif
                     </div>
                     <ul class="header__right__widget">
                         <li><a href="#">
-                                <span class="icon_heart_alt"></span>
+                                <span class="icon_info_alt"></span>
                                 <div class="tip">2</div>
                             </a>
                         </li>
-                        <li><a href="#">
-                            <span class="icon_bag_alt"></span>
+                        <li><a href="shop/chart">
+                            <span class="icon_cart_alt"></span>
                             <div class="tip">2</div>
                             </a>
                         </li>

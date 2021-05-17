@@ -7,17 +7,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\user\ChartController;
+use App\Http\Controllers\user\CheckoutController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct']);
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
@@ -28,7 +21,6 @@ Route::group(['middleware' => ['auth:user','verified']], function(){
 
 Route::group(['middleware' => 'guest'], function(){
 	Route::get('/', [UserController::class, 'index'])->name('user.home');
-	Route::get('/shop', [UserController::class, 'store'])->name('user.shop');
 	Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
 	Route::get('/login/admin', [AuthController::class, 'loginadmin']);
 	Route::get('/daftar/admin', [AuthController::class, 'registeradmin'])->name('registeradmin');
@@ -42,6 +34,16 @@ Route::group(['middleware' => 'guest'], function(){
 	Route::post('/do/forgot', [AuthController::class, 'doforgot'])->name('doforgot');
 	Route::get('/lupa/pass/{email}', [AuthController::class, 'lupapass'])->name('lupapass');
 	Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass');
+
+	// Shop
+	Route::get('/shop', [ShopController::class, 'index']);
+	Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
+
+	// Chart
+	Route::get('/shop/chart', [ChartController::class, 'index']);
+
+	// Checkout
+	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
 
 Route::group(['middleware' => 'auth:admin'], function(){
@@ -49,7 +51,7 @@ Route::group(['middleware' => 'auth:admin'], function(){
 
 	Route::get('/daftar/diskon', [ProductsController::class, 'listdiskon'])->name('listdiskon');
 	Route::post('/save/diskon', [ProductsController::class, 'savediskon'])->name('savediskon');
-
+	
 	Route::get('/daftar/review', [ProductsController::class, 'listreview'])->name('listreview');
 	Route::get('/hapus/review', [ProductsController::class, 'hapusreview'])->name('admin.hapus.review');
 
@@ -59,12 +61,12 @@ Route::group(['middleware' => 'auth:admin'], function(){
 	Route::get('/ubah/product/page', [ProductsController::class, 'ubahproductpage'])->name('ubah.product.page');
 	Route::post('/ubah/product', [ProductsController::class, 'ubahproduct'])->name('ubah.product');
 	Route::get('/hapus/product', [ProductsController::class, 'hapusproduct'])->name('hapus.product');
-
+	
 	Route::get('/list/courier', [CourierController::class , 'index'])->name('list.courier');
 	Route::post('/save/courier', [CourierController::class, 'savecou'])->name('save.courier');
 	Route::post('/ubah/courier', [CourierController::class, 'ubahcou'])->name('ubah.courier');
 	Route::get('/hapus/courier', [CourierController::class, 'hapuscou'])->name('hapus.courier');
-
+	
 	Route::get('/list/category', [CategoryController::class , 'index'])->name('list.category');
 	Route::post('/save/category', [CategoryController::class, 'savecategory'])->name('save.category');
 	Route::post('/ubah/category', [CategoryController::class, 'ubahcategory'])->name('ubah.category');
