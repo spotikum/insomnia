@@ -44,7 +44,7 @@
         <script src="{{ asset('assets/user/js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/user/js/mixitup.min.js') }}"></script>
         <script src="{{ asset('assets/user/js/jquery.countdown.min.js') }}"></script>
-        <script src="{{ asset('assets/user/s/jquery.slicknav.js') }}"></script>
+        <script src="{{ asset('assets/user/js/jquery.slicknav.js') }}"></script>
         <script src="{{ asset('assets/user/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('assets/user/js/jquery.nicescroll.min.js') }}"></script>
         <script src="{{ asset('assets/user/js/main.js') }}"></script>

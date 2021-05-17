@@ -10,12 +10,12 @@ class UserController extends Controller
 {
 	function index(){
 		$data['produk'] = Product::with('gambar')->get();
-		return view('user.homepage', $data);
+		return view('homepage', $data);
 	}
 
 	function store(){
 		$data['produk'] = Product::with('gambar')->get();
-		return view('user.shop', $data);
+		return view('user.product.shop', $data);
 	}
 
 	function buyproduct(){
