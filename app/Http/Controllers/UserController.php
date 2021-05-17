@@ -15,7 +15,7 @@ class UserController extends Controller
 
 	function store(){
 		$data['produk'] = Product::with('gambar')->get();
-		return view('user.product.shop', $data);
+		return view('user.shop.shop', $data);
 	}
 
 	function buyproduct(){

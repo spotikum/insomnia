@@ -1,10 +1,10 @@
 @extends('user.layouts.app')
 
-@section('content')
 @section('route')
     <span>New</span>
 @endsection
 
+@section('content')
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
