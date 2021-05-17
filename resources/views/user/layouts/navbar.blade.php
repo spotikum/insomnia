@@ -30,12 +30,12 @@
                     </div>
                     <ul class="header__right__widget">
                         <li><a href="#">
-                                <span class="icon_heart_alt"></span>
+                                <span class="icon_info_alt"></span>
                                 <div class="tip">2</div>
                             </a>
                         </li>
                         <li><a href="#">
-                            <span class="icon_bag_alt"></span>
+                            <span class="icon_cart_alt"></span>
                             <div class="tip">2</div>
                             </a>
                         </li>

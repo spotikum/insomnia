@@ -81,136 +81,136 @@ class ProductsController extends Controller
                 $fileName   = time() . '.' . $image->getClientOriginalExtension(); //mengubah namafile
                 $path = Storage::putFileAs('public/images/produk', $req->file('foto'), $fileName); //upload file pada server
                 //input user ke db
-                Product_image::create([
-                	'product_id' => $req->idproduk,
-                	'image_name' => $fileName
-                ]);
-                return redirect('/list/products')->with('sukses', "Gambar produk berhasil diupload");
-            } catch (Exception $e) {
-            	return redirect('/list/products')->with('gagal', "Gambar produk gagal diupload");
-            }
-        }
-    }
+			Product_image::create([
+				'product_id' => $req->idproduk,
+				'image_name' => $fileName
+			]);
+			return redirect('/list/products')->with('sukses', "Gambar produk berhasil diupload");
+		} catch (Exception $e) {
+			return redirect('/list/products')->with('gagal', "Gambar produk gagal diupload");
+		}
+	}
+}
 
-    function selectproduct($id){
-    	Product::findOrFail($id);
+function selectproduct($id){
+	Product::findOrFail($id);
 
-    	$data = Product::where('id', $id)->first();
-    	echo json_encode($data);
-    }
+	$data = Product::where('id', $id)->first();
+	echo json_encode($data);
+}
 
-    //fungsi untuk simpan produk
-    function saveproduct(Request $req){
+//fungsi untuk simpan produk
+function saveproduct(Request $req){
 
-    	//syntax validasi inputan
-    	$req->validate([
-    		'kategori' => 'required',
-    		'product_name' => 'required|unique:products',
-    		'harga' => 'required',
-    		'deskripsi' => 'required',
-    		'rating' => 'required',
-    		'stok' => 'required',
-    		'berat' => 'required'
-    	],[
-    		'kategori.required' => "Pilih kategori produk terlebih dahulu",
-    		'product_name.required' => "Nama produk harus diisi",
-    		'product_name.unique' => "Nama produk sudah digunakan",
-    		'harga.required' => "Harga produk harus diisi",
-    		'deskripsi.required' => "Deskripsi produk harus diisi",
-    		'rating.required' => "Rating produk harus diisi",
-    		'stok.required' => "Stok produk harus diisi",
-    		'berat.required' => "Berat produk harus diisi",
-    	]);
+	//syntax validasi inputan
+	$req->validate([
+		'kategori' => 'required',
+		'product_name' => 'required|unique:products',
+		'harga' => 'required',
+		'deskripsi' => 'required',
+		'rating' => 'required',
+		'stok' => 'required',
+		'berat' => 'required'
+	],[
+		'kategori.required' => "Pilih kategori produk terlebih dahulu",
+		'product_name.required' => "Nama produk harus diisi",
+		'product_name.unique' => "Nama produk sudah digunakan",
+		'harga.required' => "Harga produk harus diisi",
+		'deskripsi.required' => "Deskripsi produk harus diisi",
+		'rating.required' => "Rating produk harus diisi",
+		'stok.required' => "Stok produk harus diisi",
+		'berat.required' => "Berat produk harus diisi",
+	]);
 
-    	try {
-    		//syntax input data ke db
-    		$id = Product::create([
-    			'product_name' => $req->product_name,
-    			'price' => $req->harga,
-    			'description' => $req->deskripsi,
-    			'product_rate' => $req->rating,
-    			'stock' => $req->stok,
-    			'weight' => $req->berat
-    		])->id;
+	try {
+		//syntax input data ke db
+		$id = Product::create([
+			'product_name' => $req->product_name,
+			'price' => $req->harga,
+			'description' => $req->deskripsi,
+			'product_rate' => $req->rating,
+			'stock' => $req->stok,
+			'weight' => $req->berat
+		])->id;
 
-    		Product_category_detail::create([
-    			'product_id' => $id,
-    			'category_id' => $req->kategori
-    		]);
+		Product_category_detail::create([
+			'product_id' => $id,
+			'category_id' => $req->kategori
+		]);
 
-    		return redirect('/list/products')->with('sukses', 'Data produk berhasil ditambahkan');
-    	} catch (Exception $e) {
-    		return redirect('/list/products')->with('gagal', 'Data produk gagal ditambahkan');
-    	}
-    }
+		return redirect('/list/products')->with('sukses', 'Data produk berhasil ditambahkan');
+	} catch (Exception $e) {
+		return redirect('/list/products')->with('gagal', 'Data produk gagal ditambahkan');
+	}
+}
 
-    //funcgsi untuk menampilkan halaman edit produk
-    function ubahproductpage(){
-    	//syntax cek produk dengan id
-    	Product::findOrFail($_GET['id']);
+//funcgsi untuk menampilkan halaman edit produk
+function ubahproductpage(){
+	//syntax cek produk dengan id
+	Product::findOrFail($_GET['id']);
 
-    	//get data produk berdasarkan id
-    	$data['produk'] = Product::join('product_category_details', 'products.id', 'product_category_details.product_id')->select('products.*', 'product_category_details.category_id')->where('products.id', $_GET['id'])->get();
-    	$data['category'] = Product_categorie::all();
-    	return view('admin.ubahproduct', $data);
-    }
+	//get data produk berdasarkan id
+	$data['produk'] = Product::join('product_category_details', 'products.id', 'product_category_details.product_id')->select('products.*', 'product_category_details.category_id')->where('products.id', $_GET['id'])->get();
+	$data['category'] = Product_categorie::all();
+	return view('admin.ubahproduct', $data);
+}
 
-    //fungsi untuk simpan edit produk
-    function ubahproduct(Request $req){    
+//fungsi untuk simpan edit produk
+function ubahproduct(Request $req){    
 
-    	//validasi inputan	
-    	$req->validate([
-    		'kategori' => 'required',
-    		'product_name' => 'required',
-    		'harga' => 'required',
-    		'deskripsi' => 'required',
-    		'rating' => 'required',
-    		'stok' => 'required',
-    		'berat' => 'required'
-    	],[
-    		'kategori.required' => "Pilih kategori produk terlebih dahulu",
-    		'product_name.required' => "Nama produk harus diisi",
-    		'harga.required' => "Harga produk harus diisi",
-    		'deskripsi.required' => "Deskripsi produk harus diisi",
-    		'rating.required' => "Rating produk harus diisi",
-    		'stok.required' => "Stok produk harus diisi",
-    		'berat.required' => "Berat produk harus diisi",
-    	]);
+	//validasi inputan	
+	$req->validate([
+		'kategori' => 'required',
+		'product_name' => 'required',
+		'harga' => 'required',
+		'deskripsi' => 'required',
+		'rating' => 'required',
+		'stok' => 'required',
+		'berat' => 'required'
+	],[
+		'kategori.required' => "Pilih kategori produk terlebih dahulu",
+		'product_name.required' => "Nama produk harus diisi",
+		'harga.required' => "Harga produk harus diisi",
+		'deskripsi.required' => "Deskripsi produk harus diisi",
+		'rating.required' => "Rating produk harus diisi",
+		'stok.required' => "Stok produk harus diisi",
+		'berat.required' => "Berat produk harus diisi",
+	]);
 
-    	//cek ada tidaknya produk dengan id sekian
-    	Product::findOrFail($req->id);
+	//cek ada tidaknya produk dengan id sekian
+	Product::findOrFail($req->id);
 
-    	try {
-    		Product::where('id', $req->id)->update([
-    			'product_name' => $req->product_name,
-    			'price' => $req->harga,
-    			'description' => $req->deskripsi,
-    			'product_rate' => $req->rating,
-    			'stock' => $req->stok,
-    			'weight' => $req->berat
-    		]);
+	try {
+		Product::where('id', $req->id)->update([
+			'product_name' => $req->product_name,
+			'price' => $req->harga,
+			'description' => $req->deskripsi,
+			'product_rate' => $req->rating,
+			'stock' => $req->stok,
+			'weight' => $req->berat
+		]);
 
-    		Product_category_detail::where('product_id', $req->id)->update([
-    			'category_id' => $req->kategori
-    		]);
+		Product_category_detail::where('product_id', $req->id)->update([
+			'category_id' => $req->kategori
+		]);
 
-    		return redirect('/list/products')->with('sukses', 'Data produk berhasil diubah');
-    	} catch (Exception $e) {
-    		return redirect('/list/products')->with('gagal', 'Data produk gagal diubah');
-    	}
-    }
+		return redirect('/list/products')->with('sukses', 'Data produk berhasil diubah');
+	} catch (Exception $e) {
+		return redirect('/list/products')->with('gagal', 'Data produk gagal diubah');
+	}
+}
 
-    //fungsi untuk hapus produk
-    function hapusproduct(){
-    	Product::findOrFail($_GET['id']);
-    	try {
-    		Discount::where('product_id', $_GET['id'])->delete();
-    		Product_image::where('product_id', $_GET['id'])->delete();
-    		Product_category_detail::where('product_id', $_GET['id'])->delete();
-    		Product::where('id', $_GET['id'])->delete();
-    		return redirect('/list/products')->with('sukses', "Data produk berhasil dihapus");
-    	} catch (Exception $e) {
-    		return redirect('/list/products')->with('gagal', "Data produk gagal dihapus");
-    	}
-    }
+//fungsi untuk hapus produk
+function hapusproduct(){
+	Product::findOrFail($_GET['id']);
+	try {
+		Discount::where('product_id', $_GET['id'])->delete();
+		Product_image::where('product_id', $_GET['id'])->delete();
+		Product_category_detail::where('product_id', $_GET['id'])->delete();
+		Product::where('id', $_GET['id'])->delete();
+		return redirect('/list/products')->with('sukses', "Data produk berhasil dihapus");
+	} catch (Exception $e) {
+		return redirect('/list/products')->with('gagal', "Data produk gagal dihapus");
+	}
+}
 }

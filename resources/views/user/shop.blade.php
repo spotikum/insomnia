@@ -1,9 +1,10 @@
 @extends('user.layouts.app')
 
-@section('content')
 @section('route')
     <span>Shop</span>
 @endsection
+
+@section('content')
 
 <!-- Shop Section Begin -->
 <section class="shop spad">
@@ -18,125 +19,33 @@
                         <div class="categories__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
-                                    <div class="card-heading active">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Women</a>
-                                    </div>
                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#">Coats</a></li>
-                                                <li><a href="#">Jackets</a></li>
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Shirts</a></li>
-                                                <li><a href="#">T-shirts</a></li>
-                                                <li><a href="#">Jeans</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Coats</a></li>
-                                                <li><a href="#">Jackets</a></li>
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Shirts</a></li>
-                                                <li><a href="#">T-shirts</a></li>
-                                                <li><a href="#">Jeans</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Coats</a></li>
-                                                <li><a href="#">Jackets</a></li>
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Shirts</a></li>
-                                                <li><a href="#">T-shirts</a></li>
-                                                <li><a href="#">Jeans</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Coats</a></li>
-                                                <li><a href="#">Jackets</a></li>
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Shirts</a></li>
-                                                <li><a href="#">T-shirts</a></li>
-                                                <li><a href="#">Jeans</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
-                                    </div>
-                                    <div id="collapseFive" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Coats</a></li>
-                                                <li><a href="#">Jackets</a></li>
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Shirts</a></li>
-                                                <li><a href="#">T-shirts</a></li>
-                                                <li><a href="#">Jeans</a></li>
+                                                <li><a href="#">Jacket</a></li>
+                                                <li><a href="#">Top</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sidebar__filter">
-                        <div class="section-title">
-                            <h4>Shop by price</h4>
-                        </div>
-                        <div class="filter-range-wrap">
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                            data-min="33" data-max="99"></div>
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <p>Price:</p>
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">Filter</a>
                     </div>
                     <div class="sidebar__sizes">
                         <div class="section-title">
                             <h4>Shop by rating</h4>
                         </div>
-                        <div class="size__list">
-                            <label for="xxs">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <input type="checkbox" id="xxs">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
+                        @for ($i = 0; $i < 5; $i++)
+                            <div class="size__list">
+                                <label for="{{ $i }}">
+                                    @for ($j = $i; $j < 5; $j++)
+                                        <i class="fa fa-star"></i>
+                                    @endfor
+                                    <input type="checkbox" id="{{ $i }}">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        @endfor
                     </div>
                     <div class="sidebar__color">
                         <div class="section-title">
@@ -145,7 +54,7 @@
                         <div class="size__list color__list">
                             <label for="jne">
                                 JNE
-                                <input type="checkbox" id="black">
+                                <input type="checkbox" id="jne">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -161,20 +70,25 @@
                             <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}">
                                 <div class="label new">New</div>
                                 <ul class="product__hover">
-                                    <li><a href="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li> 
+                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="#">{{$p->product_name}}</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
+                                @if ($p->product_rate>0)
+                                    <div class="rating">
+                                        @for ($i = 0; $i < $p->product_rate; $i++)
+                                            <i class="fa fa-star"></i>
+                                        @endfor
+                                    </div>
+                                @else
+                                    <div class="ratingnull">
+                                        @for ($i = 0; $i < 5; $i++)
+                                            <i class="fa fa-star"></i>
+                                        @endfor
+                                    </div>
+                                @endif
                                 <div class="product__price">Rp.{{number_format($p->price, '0', ',', '.')}}</div>
                             </div>
                         </div>
