@@ -38,11 +38,7 @@ Route::group(['middleware' => 'guest'], function(){
 	// Shop
 	Route::get('/shop', [ShopController::class, 'index']);
 	Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
-
-	// Chart
 	Route::get('/shop/chart', [ChartController::class, 'index']);
-
-	// Checkout
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
 

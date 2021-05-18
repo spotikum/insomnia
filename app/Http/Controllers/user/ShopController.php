@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Product_image;
 
 class ShopController extends Controller
 {
@@ -43,8 +44,12 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        $data['produk'] = Product::with('gambar')->get();
-		return view('user.shop.detail', $data);
+        $product = Product::findOrFail($id);
+        $images = Product_image::get()->where('product_id',$id);
+
+        return view('user.shop.detail')
+            ->with(['product' => $product])
+            ->with(['images' => $images]);
     }
 
     /**

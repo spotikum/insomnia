@@ -10,4 +10,8 @@ class Product_image extends Model
     use HasFactory;
 
     protected $fillable = ['product_id','image_name'];
+
+    public function barang(){
+        return $this->belongsTo(Product::class);
+    }
 }
