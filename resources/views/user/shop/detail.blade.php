@@ -2,7 +2,7 @@
 
 @section('route')
      <a href="/shop">Shop</a>
-     <span>product_name</span>
+     <span>{{ $product->product_name }}</span>
 @endsection
 
 @section('content')
