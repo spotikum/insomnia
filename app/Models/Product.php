@@ -19,11 +19,7 @@ class Product extends Model
         return $this->hasMany('App\Models\Product_review', 'product_id');
     }
 
-    // function gambar(){
-    //     return $this->hasOne('App\Models\Product_image', 'product_id');
-    // }
-
     function gambar(){
-        return $this->hasMany(Product_image::class);
+        return $this->hasOne('App\Models\Product_image', 'product_id');
     }
 }
