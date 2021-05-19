@@ -14,7 +14,7 @@ use App\Http\Controllers\user\CheckoutController;
 Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct']);
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
-	Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
+	Route::get('/home', [UserController::class, 'index'])->name('user.home');
 	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 	
