@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-xl-2 col-lg-2">
                 <div class="header__logo">
-                    <a href="/"><img src="assets/user/img/logo.png" alt=""></a>
+                    <a href="/"><img src="{{ asset('assets/user/img/logo.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-xl-7 col-lg-7">
