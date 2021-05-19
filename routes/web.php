@@ -16,7 +16,11 @@ Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct'])
 Route::group(['middleware' => ['auth:user','verified']], function(){
 	Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
 	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
-	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');	
+	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+	
+	// shop
+	Route::get('/shop/chart', [ChartController::class, 'index']);
+	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
 
 Route::group(['middleware' => 'guest'], function(){
@@ -38,8 +42,6 @@ Route::group(['middleware' => 'guest'], function(){
 	// Shop
 	Route::get('/shop', [ShopController::class, 'index']);
 	Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
-	Route::get('/shop/chart', [ChartController::class, 'index']);
-	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
 
 Route::group(['middleware' => 'auth:admin'], function(){
