@@ -11,16 +11,16 @@ use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\ChartController;
 use App\Http\Controllers\user\CheckoutController;
 
-Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct']);
+// Route::get('/select/product/{id}', [ProductsController::class, 'selectproduct']);
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
-	Route::get('/home', [UserController::class, 'index'])->name('user.home');
-	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
-	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
-	
 	// shop
 	Route::get('/shop/chart', [ChartController::class, 'index']);
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
+
+	Route::get('/home', [UserController::class, 'index'])->name('user.home');
+	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
+	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 });
 
 Route::group(['middleware' => 'guest'], function(){

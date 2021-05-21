@@ -26,21 +26,23 @@
                 <div class="header__right">
                     <div class="header__right__auth">
                         @if(!Auth::guard('user')->check())
-                        <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('login') }}">Login</a>
                         @else
-                        <a href="#">{{Auth::guard('user')->user()->name}}</a>
-                        <a href="{{ route('user.logout') }}">Logout</a>
+                            <a href="#">{{Auth::guard('user')->user()->name}}</a>
+                            <a href="{{ route('user.logout') }}">Logout</a>
                         @endif
                     </div>
                     <ul class="header__right__widget">
-                        <li><a href="#">
+                        <li>
+                            <a href="#">
                                 <span class="icon_info_alt"></span>
                                 <div class="tip">2</div>
                             </a>
                         </li>
-                        <li><a href="shop/chart">
-                            <span class="icon_cart_alt"></span>
-                            <div class="tip">2</div>
+                        <li>
+                            <a href="shop/chart">
+                                <span class="icon_cart_alt"></span>
+                                <div class="tip">2</div>
                             </a>
                         </li>
                     </ul>
