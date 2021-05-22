@@ -257,7 +257,7 @@
         <div class="main-sidebar">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="index.html">BettaSquared</a>
+                    <a href="index.html">PRAKTIKUM</a>
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
                     <a href="index.html">BS</a>
