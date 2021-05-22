@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth:user','verified']], function(){
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 
 	Route::get('/home', [UserController::class, 'index'])->name('user.home');
+	Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
 	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 });
