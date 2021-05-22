@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
@@ -9,19 +10,11 @@ use App\Models\Product_image;
 class UserController extends Controller
 {
 	function index(){
-		$data['produk'] = Product::with('gambar')->get();
-		return view('homepage', $data);
-	}
+		$product = Product::get();
+		$discount = Discount::get();
 
-	function store(){
-		$data['produk'] = Product::with('gambar')->get();
-		return view('user.shop.shop', $data);
-	}
-
-	function buyproduct(){
-		Product::findOrFail($_GET['id']);
-
-		$data = Product::where('id', $_GET['id'])->first();
-		echo "Produk dibeli : ".$data->product_name;
+		return view('homepage')
+			->with('product', $product)
+			->with('discount', $discount);
 	}
 }

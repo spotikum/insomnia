@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
@@ -11,8 +12,12 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $data['produk'] = Product::with('gambar')->get();
-		return view('user.shop.shop', $data);
+        $product = Product::get();
+		$discount = Discount::get();
+
+		return view('user.shop.shop')
+			->with('product', $product)
+			->with('discount', $discount);
     }
 
     /**
@@ -45,10 +50,14 @@ class ShopController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+        $discount = Discount::where('product_id', $id)->sum('percentage');
         $images = Product_image::get()->where('product_id',$id);
+
+        $discount = $product->price * $discount / 100;
 
         return view('user.shop.detail')
             ->with(['product' => $product])
+            ->with(['discount' => $discount])
             ->with(['images' => $images]);
     }
 
