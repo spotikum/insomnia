@@ -51,11 +51,11 @@
                                    </div>
                               @endif
                               <span>
-                                   ( 138 reviews )
+                                   {{-- ( 138 reviews ) --}}
                               </span>
                          </div>
                          <div class="product__details__price">
-                              Rp.{{number_format($product->price, '0', ',', '.')}}
+                              Rp.{{number_format($discount, '0', ',', '.')}}
                               <span>
                                    Rp.{{number_format($product->price, '0', ',', '.')}}
                               </span>
