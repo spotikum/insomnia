@@ -243,8 +243,8 @@
                 <ul class="navbar-nav navbar-right">
 
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="{{ asset('/storage/images/'.Auth::guard('admin')->user()->profile_image) }}" class="rounded-circle mr-1">
-                        <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::guard('admin')->user()->name}}</div>
+                        <!-- <img alt="image" src="{{ asset('/storage/images/'.Auth::guard('admin')->user()->profile_image) }}" class="rounded-circle mr-1"> -->
+                        <div class="d-sm-none d-lg-inline-block">{{Auth::guard('admin')->user()->name}}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{ route('admin.logout') }}" class="dropdown-item has-icon text-danger">

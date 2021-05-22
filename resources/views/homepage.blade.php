@@ -20,7 +20,7 @@
             @foreach ($produk as $p)
             <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/public/images/produk/'.$p->gambar->image_name)}}">
+                    <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/images/produk/'.$p->gambar->image_name)}}">
                         <div class="label new">New</div>
                         <ul class="product__hover">
                             <li><a href="shop/{{ $p->id }}/detail"><span class="arrow_expand"></span></a></li>
