@@ -11,8 +11,11 @@ use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\ChartController;
 use App\Http\Controllers\user\CheckoutController;
 
-// Auth
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
+
+// Auth
 Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
 Route::get('/login/admin', [AuthController::class, 'loginadmin']);
 Route::get('/daftar/admin', [AuthController::class, 'registeradmin'])->name('registeradmin');
@@ -26,18 +29,13 @@ Route::get('/forgot/password', [AuthController::class, 'forgotpasspage'])->name(
 Route::post('/do/forgot', [AuthController::class, 'doforgot'])->name('doforgot');
 Route::get('/lupa/pass/{email}', [AuthController::class, 'lupapass'])->name('lupapass');
 Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass');
-Route::get('/shop', [ShopController::class, 'index']);
-Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
-	// shop
 	Route::get('/home', [UserController::class, 'user'])->name('user.home');
-	Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
-	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
-	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
-	
 	Route::get('/shop/chart', [ChartController::class, 'index']);
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
+	
+	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 });
 
 Route::group(['middleware' => 'auth:admin'], function(){

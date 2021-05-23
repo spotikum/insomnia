@@ -13,7 +13,7 @@ class UserController extends Controller
 		$product = Product::get();
 		$discount = Discount::get();
 
-		return view('user.shop.shop')
+		return view('homepage')
 			->with('product', $product)
 			->with('discount', $discount);
 	}
