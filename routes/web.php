@@ -30,9 +30,12 @@ Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
+	// shop
 	Route::get('/home', [UserController::class, 'user'])->name('user.home');
+	Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
 	ROute::get('/buy', [UserController::class, 'buyproduct'])->name('buy');
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+	
 	Route::get('/shop/chart', [ChartController::class, 'index']);
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 });
