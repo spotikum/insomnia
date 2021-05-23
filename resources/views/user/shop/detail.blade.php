@@ -32,9 +32,6 @@
                     <div class="product__details__text">
                          <h3>
                               {{ $product->product_name }}
-                              <span>
-                                   {{ $product->description }}
-                              </span>
                          </h3>
                          <div class="rating">
                               @if ($product->product_rate>0)
@@ -55,10 +52,14 @@
                               </span>
                          </div>
                          <div class="product__details__price">
-                              Rp.{{number_format($discount, '0', ',', '.')}}
-                              <span>
-                                   Rp.{{number_format($product->price, '0', ',', '.')}}
-                              </span>
+                              @if ($discount > 0)
+                                   Rp.{{number_format($price, '0', ',', '.')}}
+                                   <span>
+                                        Rp.{{number_format($product->price, '0', ',', '.')}}
+                                   </span>
+                              @else
+                                   Rp.{{number_format($product->price, '0', ',', '.')}}  
+                              @endif
                          </div>
                          <p>
                               {{ $product->description }}
