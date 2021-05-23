@@ -16,9 +16,9 @@
             </div>
         </div>
         <div class="row property__gallery">
-            @forelse ($product as $product)
-                <div class="col-lg-3 col-md-4 col-sm-6 mix women">
-                    <div class="product__item">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+                <div class="product__item">
+                    @forelse ($product as $product)
                         <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/images/produk/'.$product->gambar->image_name)}}">
                             <div class="label new">New</div>
                             <ul class="product__hover">
@@ -44,11 +44,11 @@
                             @endif
                             <div class="product__price">Rp.{{number_format($product->price, '0', ',', '.')}}</div>
                         </div>
-                    </div>
+                    @empty
+                    <p>Ups,, No product here</p>
+                    @endforelse
                 </div>
-            @empty
-                <p>Ups,, No product here</p>
-            @endforelse
+            </div>
         </div>
     </div>
 </section>

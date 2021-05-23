@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     @empty
-                        
+                        <p>Ups,, No product here</p>
                     @endforelse
                     <div class="col-lg-12 text-center">
                         <div class="pagination__option">
