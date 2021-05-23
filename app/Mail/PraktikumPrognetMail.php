@@ -35,7 +35,7 @@ class PraktikumPrognetMail extends Mailable
      */
     public function build()
     {
-        return $this->from('satyawibawa18@gmail.com')
+        return $this->from('admin@mail.com')
         ->view('user.emailnotif')
         ->with(
             [
