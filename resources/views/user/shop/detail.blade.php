@@ -15,14 +15,14 @@
                          <div class="product__details__pic__left product__thumb nice-scroll">
                               @foreach ($images as $product_image)
                                    <a class="pt active" href="#{{ $product_image->product_id }}">
-                                        <img src="{{asset('/storage/images/produk/'.$product_image->image_name)}}" alt="">
+                                        <img src="{{asset('/storage/public/images/produk/'.$product_image->image_name)}}" alt="">
                                    </a>
                               @endforeach
                          </div>
                          <div class="product__details__slider__content">
                          <div class="product__details__pic__slider owl-carousel">
                               @foreach ($images as $product_image)
-                                   <img data-hash="{{ $product_image->product_id }}" class="product__big__img" src="{{asset('/storage/images/produk/'.$product_image->image_name)}}" alt="">
+                                   <img data-hash="{{ $product_image->product_id }}" class="product__big__img" src="{{asset('/storage/public/images/produk/'.$product_image->image_name)}}" alt="">
                               @endforeach
                          </div>
                          </div>

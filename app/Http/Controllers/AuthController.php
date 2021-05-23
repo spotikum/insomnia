@@ -83,7 +83,7 @@ class AuthController extends Controller
 				Auth::guard('user')->logout();
 				return view('user.nonaktif');
 			}else{
-				return redirect()->intended('/user/home');
+				return redirect()->intended('/');
 			}
 		}else{
             //jjika salah inputan
