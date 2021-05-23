@@ -51,9 +51,8 @@ class ShopController extends Controller
     {
         $product = Product::findOrFail($id);
         $discount = Discount::where('product_id', $id)->sum('percentage');
-        $discount = $product->price * $discount / 50;
         $images = Product_image::get()->where('product_id',$id);
-        $price = ($discount > 0) ? $price = $product->price * $discount / 100 : $price = $product->price ;
+        $price = ($discount > 0) ? $price = ($product->price)-$product->price * $discount / 100 : $price = $product->price ;
         
         return view('user.shop.detail')
             ->with(['product' => $product])

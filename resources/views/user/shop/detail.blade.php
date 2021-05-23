@@ -62,7 +62,7 @@
                               @endif
                          </div>
                          <p>
-                              {{ $product->description }}
+                              {{ $product->product_desc }}
                          </p>
                          <div class="product__details__button">
                               <div class="quantity">
