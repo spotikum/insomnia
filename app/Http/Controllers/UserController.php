@@ -19,7 +19,7 @@ class UserController extends Controller
 	}
 
 	function user(){
-		$product = Product::get();
+		$product = Product::paginate(2);
 		$discount = Discount::get();
 
 		return view('user.shop.shop')
