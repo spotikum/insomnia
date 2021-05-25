@@ -36,13 +36,13 @@
                         <li>
                             <a href="#">
                                 <span class="icon_info_alt"></span>
-                                <div class="tip">2</div>
+                                {{-- <div class="tip">2</div> --}}
                             </a>
                         </li>
                         <li>
                             <a href="shop/chart">
                                 <span class="icon_cart_alt"></span>
-                                <div class="tip">2</div>
+                                {{-- <div class="tip">2</div> --}}
                             </a>
                         </li>
                     </ul>
