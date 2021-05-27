@@ -6,16 +6,21 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
 	function index(){
 		$product = Product::get();
 		$discount = Discount::get();
+		$new = Carbon::yesterday();
+		
 
 		return view('homepage')
 			->with('product', $product)
-			->with('discount', $discount);
+			->with('discount', $discount)
+			->with('new', $new)
+		;
 	}
 
 	function user(){

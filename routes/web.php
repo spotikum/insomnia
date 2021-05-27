@@ -31,7 +31,7 @@ Route::get('/lupa/pass/{email}', [AuthController::class, 'lupapass'])->name('lup
 Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass');
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
-	Route::get('/', [UserController::class, 'user'])->name('user.home');
+	Route::get('/home', [UserController::class, 'user'])->name('user.home');
 	
 	Route::get('/shop/chart', [ChartController::class, 'index']);
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
