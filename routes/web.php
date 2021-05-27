@@ -32,6 +32,7 @@ Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass')
 
 Route::group(['middleware' => ['auth:user','verified']], function(){
 	Route::get('/home', [UserController::class, 'user'])->name('user.home');
+	
 	Route::get('/shop/chart', [ChartController::class, 'index']);
 	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
