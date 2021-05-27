@@ -8,17 +8,21 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
+use Illuminate\Support\Carbon;
 
 class ShopController extends Controller
 {
     public function index()
     {
-        $product = Product::get();
+        $product = Product::get()->sortByDesc("updated_at");
 		$discount = Discount::get();
+        $new = Carbon::yesterday();
 
 		return view('user.shop.shop')
 			->with('product', $product)
-			->with('discount', $discount);
+			->with('discount', $discount)
+            ->with('new', $new)
+        ;
     }
 
     /**

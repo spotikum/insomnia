@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 class UserController extends Controller
 {
 	function index(){
-		$product = Product::get();
+		$product = Product::paginate(8)->sortByDesc("updated_at");
 		$discount = Discount::get();
 		$new = Carbon::yesterday();
 		
@@ -24,11 +24,14 @@ class UserController extends Controller
 	}
 
 	function user(){
-		$product = Product::paginate(2);
+		$product = Product::paginate(8)->sortByDesc("updated_at");
 		$discount = Discount::get();
+		$new = Carbon::yesterday();
 
 		return view('user.shop.shop')
 			->with('product', $product)
-			->with('discount', $discount);
+			->with('discount', $discount)
+			->with('new', $new)
+		;
 	}
 }
