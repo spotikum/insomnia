@@ -28,7 +28,7 @@
                                         <td class="cart__product__item">
                                              <img src="assets/user/img/shop-cart/cp-1.jpg" alt="">
                                              <div class="cart__product__item__title">
-                                                  <h6>Chain bucket bag</h6>
+                                                  <h6>{{ $cart->id }}</h6>
                                                   <div class="rating">
                                                        <i class="fa fa-star"></i>
                                                        <i class="fa fa-star"></i>
@@ -45,7 +45,11 @@
                                              </div>
                                         </td>
                                         <td class="cart__total">$ 300.0</td>
-                                        <td class="cart__close"><span class="icon_close"></span></td>
+                                        <td class="cart__close">
+                                             <a href="/cart/delete/">
+                                                  <span class="icon_close"></span>
+                                             </a>
+                                        </td>
                                    </tr>
                               @empty
                               <tr>
