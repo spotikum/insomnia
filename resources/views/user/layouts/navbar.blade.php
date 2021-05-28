@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="shop/chart">
+                            <a href="cart">
                                 <span class="icon_cart_alt"></span>
                                 {{-- <div class="tip">2</div> --}}
                             </a>
