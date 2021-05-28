@@ -14,14 +14,4 @@ class CheckoutController extends Controller
     {
         return view('user.shop.chart');
     }
-
-    public function buy($id)
-    {
-        $user_id = Auth::user()->id;
-
-        Transaction::create([
-            'user_id' => $user_id
-        ]);
-        return view('user.shop.chart');
-    }
 }

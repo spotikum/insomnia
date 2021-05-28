@@ -8,12 +8,8 @@ use App\Http\Controllers\CourierController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\user\ShopController;
-use App\Http\Controllers\user\ChartController;
+use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
-
-Route::get('/', [UserController::class, 'index'])->name('home');
-Route::get('/shop', [ShopController::class, 'index']);
-Route::get('/shop/{id}/detail', [ShopController::class, 'show']);
 
 // Auth
 Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
@@ -30,16 +26,10 @@ Route::post('/do/forgot', [AuthController::class, 'doforgot'])->name('doforgot')
 Route::get('/lupa/pass/{email}', [AuthController::class, 'lupapass'])->name('lupapass');
 Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass');
 
-Route::group(['middleware' => ['auth:user','verified']], function(){
-	Route::get('/home', [UserController::class, 'user'])->name('user.home');
-	
-	Route::get('/shop/chart', [ChartController::class, 'index']);
-
-	Route::get('/shop/checkout/{id}', [CheckoutController::class, 'buy']);
-
-	Route::get('/shop/checkout', [CheckoutController::class, 'index']);
-	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
-});
+// Guest User
+Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/shop/{id}', [ShopController::class, 'show']);
 
 Route::group(['middleware' => 'auth:admin'], function(){
 	Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
@@ -62,4 +52,15 @@ Route::group(['middleware' => 'auth:admin'], function(){
 	Route::post('/ubah/category', [CategoryController::class, 'ubahcategory'])->name('ubah.category');
 	Route::get('/hapus/category', [CategoryController::class, 'hapuscategory'])->name('hapus.category');
 	Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+});
+
+Route::group(['middleware' => ['auth:user','verified']], function(){
+	Route::get('/home', [UserController::class, 'user'])->name('user.home');
+	
+	Route::get('/cart', [CartController::class, 'index']);
+
+	Route::get('/cart/{id}', [CartController::class, 'buy']);
+
+	Route::get('/checkout', [CheckoutController::class, 'index']);
+	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 });
