@@ -46,7 +46,7 @@
                                         </td>
                                         <td class="cart__total">$ 300.0</td>
                                         <td class="cart__close">
-                                             <a href="/cart/delete/">
+                                             <a href="/cart/delete/{{ $cart->id }}">
                                                   <span class="icon_close"></span>
                                              </a>
                                         </td>

@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\Input;
 
 class CartController extends Controller
 {
@@ -40,5 +39,11 @@ class CartController extends Controller
         }
         
         return redirect('/cart');
+    }
+
+    public function destroy($id)
+    {
+        Cart::destroy($id);
+        return back();
     }
 }
