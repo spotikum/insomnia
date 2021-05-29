@@ -16,7 +16,10 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="{{ request()->is('/') ? ' active' : ''}}"><a href="/">Home</a></li>
-                        <li class="{{ request()->is('shop*' || 'cart*') ? ' active' : ''}}"><a href="/shop">Shop</a></li>
+                        <li class="{{ request()->is('shop*') ? ' active' : ''}}"><a href="/shop">Shop</a></li>
+                        @if ( request()->is('cart*'))
+                        <li class="active"><a href="/cart">Cart</a></li>
+                        @endif
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
