@@ -8,6 +8,7 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
+use App\Models\Product_review;
 use Illuminate\Support\Carbon;
 
 class ShopController extends Controller
@@ -55,12 +56,14 @@ class ShopController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+        $rate = Product_review::where('product_id', $id)->sum('id');
         $discount = Discount::where('product_id', $id)->sum('percentage');
         $images = Product_image::get()->where('product_id',$id);
         $price = ($discount > 0) ? $price = ($product->price)-$product->price * $discount / 100 : $price = $product->price ;
         
         return view('user.shop.detail')
             ->with(['product' => $product])
+            ->with(['rate' => $rate])
             ->with(['discount' => $discount])
             ->with(['price' => $price])
             ->with(['images' => $images]);

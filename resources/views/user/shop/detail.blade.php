@@ -48,7 +48,7 @@
                                    </div>
                               @endif
                               <span>
-                                   {{-- ( 138 reviews ) --}}
+                                   ( {{ $rate }} reviews )
                               </span>
                          </div>
                          <div class="product__details__price">
@@ -88,8 +88,6 @@
                                         </label>
                                    </div>
                               </li>
-                              
-                              
                          </ul>
                          </div>
                     </div>
@@ -101,7 +99,7 @@
                               <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
                          </li>
                          <li class="nav-item">
-                              <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+                              <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( {{ $rate }} )</a>
                          </li>
                          </ul>
                          <div class="tab-content">
