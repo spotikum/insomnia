@@ -20,6 +20,9 @@
                         @if ( request()->is('cart*'))
                         <li class="active"><a href="/cart">Cart</a></li>
                         @endif
+                        @if ( request()->is('checkout*'))
+                        <li class="active"><a href="/checkout">Checkout</a></li>
+                        @endif
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
