@@ -74,7 +74,7 @@
                                     @endif
                                     <ul class="product__hover">
                                         <li><a href="shop/{{ $product->id }}"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="cart/{{ $product->id }}"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="cart/buy/{{ $product->id }}"><span class="icon_bag_alt"></span></a></li>
                                         <li><a href="#"><span class="icon_cart_alt"></span></a></li> 
                                     </ul>
                                 </div>
