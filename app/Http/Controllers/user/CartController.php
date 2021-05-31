@@ -41,6 +41,26 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
+    public function add($id)
+    {
+        $user_id = Auth::user()->id;
+        $cart = Cart::where('product_id', '=', $id)->first();
+
+        if ($cart === null) {
+            Cart::create([
+                'user_id' => $user_id,
+                'product_id' => $id,
+                'qty' => '1',
+                'status' => 'notyet'
+            ]);
+        } else {
+            DB::table('carts')->increment('qty');
+
+        }
+        
+        return back();
+    }
+
     public function destroy($id)
     {
         Cart::destroy($id);
