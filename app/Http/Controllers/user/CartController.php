@@ -17,8 +17,6 @@ class CartController extends Controller
         $product = Product::get();
         $cart = Cart::where('user_id', $user_id)->where('status', 'notyet')->get();
         $total = 0 ;
-        // $total = Cart::where('user_id', $user_id)->sum('qty');
-        // dd($total);
 
         return view('user.shop.cart')
             ->with('product', $product)

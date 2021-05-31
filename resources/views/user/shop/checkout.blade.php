@@ -12,7 +12,7 @@
           <form action="#" class="checkout__form">
                <div class="row">
                     <div class="col-lg-8">
-                         <h5>Billing detail</h5>
+                         <h5>Select Location</h5>
                          <div class="row">
                               <div class="col-lg-12">
                                    <p>hi</p>
@@ -28,12 +28,15 @@
                                              <span class="top__text">Product</span>
                                              <span class="top__text__right">Total</span>
                                         </li>
-                                        <li>Chain buck bag (1) <span>Rp. 7.000</span></li>
+                                        @foreach ($cart as $cart)
+                                             <li>{{ $cart->qty }}. {{ $cart->product->product_name }}<span>Rp.{{number_format($cart->qty * $cart->product->price, '0', ',', '.')}}</span></li>
+                                             <input type="hidden" value="{{ $total = $total + ($cart->qty * $cart->product->price) }}">
+                                        @endforeach
                                    </ul>
                               </div>
                               <div class="checkout__order__total">
                                    <ul>
-                                        <li>Total <span>Rp.7.000</span></li>
+                                        <li>Total <span>Rp.{{number_format($total, '0', ',', '.')}}</span></li>
                                    </ul>
                               </div>
                               <button type="submit" class="site-btn">Buy</button>

@@ -76,7 +76,7 @@
                     <ul>
                          <li>Total <span>Rp.{{number_format($total, '0', ',', '.')}}</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Proceed to checkout</a>
+                    <a href="/checkout" class="primary-btn">Proceed to checkout</a>
                </div>
           </div>
      </div>
