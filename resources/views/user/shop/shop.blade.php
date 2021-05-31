@@ -22,8 +22,11 @@
                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#">Jacket</a></li>
-                                                <li><a href="#">Top</a></li>
+                                                @forelse ($category as $category)
+                                                    <li><a href="/shop/cat/{{ $category->id }}">{{ $category->category_name }}</a></li>
+                                                @empty
+                                                    We don't have category
+                                                @endforelse
                                             </ul>
                                         </div>
                                     </div>
@@ -52,11 +55,15 @@
                             <h4>Shop by courier</h4>
                         </div>
                         <div class="size__list color__list">
-                            <label for="jne">
-                                JNE
-                                <input type="checkbox" id="jne">
-                                <span class="checkmark"></span>
-                            </label>
+                            @forelse ($courier as $courier)
+                                <label for="{{ $courier->courier }}">
+                                    {{ $courier->courier }}
+                                    <input type="checkbox" id="{{ $courier->courier }}">
+                                    <span class="checkmark"></span>
+                                </label>
+                            @empty  
+                                We don't have courier
+                            @endforelse
                         </div>
                     </div>
                 </div>

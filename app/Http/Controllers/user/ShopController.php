@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
+use App\Models\Courier;
 use Illuminate\Support\Facades\DB;
 use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Product_categorie;
 use App\Models\Product_image;
 use App\Models\Product_review;
 use Illuminate\Support\Carbon;
@@ -16,14 +19,25 @@ class ShopController extends Controller
     public function index()
     {
         $product = Product::get()->sortByDesc("updated_at");
+        $gambar = Product::get();
+        $category = Product_categorie::get();
+        $courier = Courier::get();
 		$discount = Discount::get();
         $new = Carbon::yesterday();
 
-		return view('user.shop.shop')
-			->with('product', $product)
-			->with('discount', $discount)
-            ->with('new', $new)
-        ;
+		return view('user.shop.shop', compact('product', 'gambar', 'category', 'courier', 'discount', 'new'));
+    }
+
+    public function by_category($id)
+    {
+        $product = DB::select('SELECT product_name FROM products, product_categories, product_category_details WHERE product_category_details.`category_id` = product_categories.`id` AND product_category_details.`product_id` = products.`id` AND product_categories.`id` = ?', [$id]);
+        $gambar = Product::get();
+        $category = Product_categorie::get();
+        $courier = Courier::get();
+		$discount = Discount::get();
+        $new = Carbon::yesterday();
+
+		return view('user.shop.shop', compact('product', 'gambar', 'category', 'courier', 'discount', 'new'));
     }
 
     /**

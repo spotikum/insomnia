@@ -30,6 +30,7 @@ Route::post('/ubah/pass', [AuthController::class, 'ubahpass'])->name('ubahpass')
 Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/shop/{id}', [ShopController::class, 'show']);
+Route::get('/shop/cat/{id}', [ShopController::class, 'by_category']);
 
 Route::group(['middleware' => 'auth:admin'], function(){
 	Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
