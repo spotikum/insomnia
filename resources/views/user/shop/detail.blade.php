@@ -71,9 +71,9 @@
                                         <input type="text" value="1">
                                    </div>
                               </div>
-                                   <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Buy</a>
+                                   <a href="/cart/buy/{{ $product->id }}" class="cart-btn"><span class="icon_bag_alt"></span> Buy</a>
                               <ul>
-                                   <li><a href="#"><span class="icon_cart_alt"></span></a></li>
+                                   <li><a href="/cart/add/{{ $product->id }}"><span class="icon_cart_alt"></span></a></li>
                               </ul>
                          </div>
                          <div class="product__details__widget">
