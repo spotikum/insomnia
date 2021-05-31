@@ -71,7 +71,7 @@ class CartController extends Controller
     {
         Cart::where('id', $id)
             ->update([
-                'status' => 'cencelled'
+                'status' => 'cancelled'
             ]);
         return back();
     }
