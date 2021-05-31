@@ -40,7 +40,7 @@
                                         <td class="cart__total">Rp.{{number_format($cart->qty * $cart->product->price, '0', ',', '.')}}</td>
                                         <input type="hidden" value="{{ $total = $total + ($cart->qty * $cart->product->price) }}">
                                         <td class="cart__close">
-                                             <a href="/cart/delete/{{ $cart->id }}">
+                                             <a href="cart/delete/{{ $cart->id }}">
                                                   <span class="icon_close"></span>
                                              </a>
                                         </td>

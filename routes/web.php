@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth:user','verified']], function(){
 
 	Route::get('/cart/buy/{id}', [CartController::class, 'buy']);
 	Route::get('/cart/add/{id}', [CartController::class, 'add']);
-	Route::get('/cart/delete/{id}', [CartController::class], 'destroy');
+	Route::get('/cart/delete/{id}', [CartController::class], 'delete');
 
 	Route::get('/checkout', [CheckoutController::class, 'index']);
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');

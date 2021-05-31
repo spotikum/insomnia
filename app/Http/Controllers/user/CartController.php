@@ -15,7 +15,7 @@ class CartController extends Controller
     {
         $user_id = Auth::user()->id;
         $product = Product::get();
-        $cart = Cart::where('user_id', $user_id)->get();
+        $cart = Cart::where('user_id', $user_id)->where('status', 'notyet')->get();
         $total = 0 ;
         // $total = Cart::where('user_id', $user_id)->sum('qty');
         // dd($total);
@@ -30,7 +30,7 @@ class CartController extends Controller
     public function buy($id)
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where('product_id', '=', $id)->first();
+        $cart = Cart::where('product_id', '=', $id)->where('status', 'notyet')->first();
 
         if ($cart === null) {
             Cart::create([
@@ -50,7 +50,7 @@ class CartController extends Controller
     public function add($id)
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where('product_id', '=', $id)->first();
+        $cart = Cart::where('product_id', '=', $id)->where('status', 'notyet')->first();
 
         if ($cart === null) {
             Cart::create([
@@ -67,9 +67,12 @@ class CartController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        Cart::destroy($id);
+        Cart::where('id', $id)
+            ->update([
+                'status' => 'cencelled'
+            ]);
         return back();
     }
 }
