@@ -26,25 +26,19 @@
                               @forelse ($cart as $cart)
                                    <tr>
                                         <td class="cart__product__item">
-                                             <img src="assets/user/img/shop-cart/cp-1.jpg" alt="">
+                                             <img src="{{asset('/storage/public/images/produk/'.$cart->product->gambar->image_name)}}" alt="Images" width="80">
                                              <div class="cart__product__item__title">
-                                                  <h6>{{ $cart->id }}</h6>
-                                                  <div class="rating">
-                                                       <i class="fa fa-star"></i>
-                                                       <i class="fa fa-star"></i>
-                                                       <i class="fa fa-star"></i>
-                                                       <i class="fa fa-star"></i>
-                                                       <i class="fa fa-star"></i>
-                                                  </div>
+                                                  <h6>{{ $cart->product->product_name }}</h6>
                                              </div>
                                         </td>
-                                        <td class="cart__price">$ 150.0</td>
+                                        <td class="cart__price">Rp.{{number_format($cart->product->price, '0', ',', '.')}}</td>
                                         <td class="cart__quantity">
                                              <div class="pro-qty">
-                                                  <input type="text" value="1">
+                                                  <input type="text" value="{{ $cart->qty }}">
                                              </div>
                                         </td>
-                                        <td class="cart__total">$ 300.0</td>
+                                        <td class="cart__total">Rp.{{number_format($cart->qty * $cart->product->price, '0', ',', '.')}}</td>
+                                        <input type="hidden" value="{{ $total = $total + ($cart->qty * $cart->product->price) }}">
                                         <td class="cart__close">
                                              <a href="/cart/delete/{{ $cart->id }}">
                                                   <span class="icon_close"></span>
@@ -80,8 +74,7 @@
                <div class="cart__total__procced">
                     <h6>Cart total</h6>
                     <ul>
-                         <li>Subtotal <span>$ 750.0</span></li>
-                         <li>Total <span>$ 750.0</span></li>
+                         <li>Total <span>Rp.{{number_format($total, '0', ',', '.')}}</span></li>
                     </ul>
                     <a href="#" class="primary-btn">Proceed to checkout</a>
                </div>

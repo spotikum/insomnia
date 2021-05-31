@@ -22,4 +22,8 @@ class Product extends Model
     function gambar(){
         return $this->hasOne('App\Models\Product_image', 'product_id');
     }
+
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }
 }
