@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
@@ -29,12 +30,6 @@ class CheckoutController extends Controller
 
         return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
     }
-
-    // public function getCities($id)
-    // {
-    //     $city = City::where('province_id', $id)->pluck('name', 'city_id');
-    //     return response()->json($city);
-    // }
 
     public function buy(Request $request)
     {
@@ -55,9 +50,24 @@ class CheckoutController extends Controller
                 
             $weight = 0;
             $cost = $cost[0]['costs'][0]['cost'][0]['value'];
-
+            
+            // return redirect('/checkout');
             return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
         } else if ($request->has('buy')) {
+            dd($request);
+            Transaction::create([
+                'timeout' => Carbon::yesterday(),
+                'address' => $request->street,
+                'regency' => $request->destination,
+                'province' => $request,
+                'total' => $request,
+                'shipping_cost' => $request,
+                'sub_total' => $request,
+                'user_id' => $request,
+                'courier_id' => $request,
+                'proof_of_payment' => $request,
+                'status' => 'unverified'
+            ]);
             return redirect('/');
         }
     }

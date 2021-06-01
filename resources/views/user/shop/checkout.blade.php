@@ -18,7 +18,7 @@
                               <div class="col-lg-12">
                                    <div class="form-group">
                                         <label class="font-weight-bold" for="">Name</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" value="{{ Request::old('name') }}">
                                    </div>
                               </div>
                               <div class="col-lg-12">
@@ -27,7 +27,7 @@
                                         <select class="form-control provinsi-tujuan" name="destination">
                                              <option value="0">-- your city --</option>
                                              @foreach ($city as $city => $value)
-                                                  <option value="{{ $city  }}">{{ $value }}</option>
+                                                  <option value="{{ old('destination', $city )}}">{{ $value }}</option>
                                              @endforeach
                                         </select>
                                    </div>
