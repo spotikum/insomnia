@@ -81,7 +81,7 @@
                               </div>
                               <div class="checkout__order__total">
                                    <ul>
-                                        <li>Total <span>Rp.{{number_format($total, '0', ',', '.')}}</span></li>
+                                        <li>Total <span>Rp.{{number_format($total + $cost, '0', ',', '.')}}</span></li>
                                    </ul>
                               </div>
                               <button type="submit" class="site-btn" {{ $cost ? '' : 'disabled' }}>Buy</button>
