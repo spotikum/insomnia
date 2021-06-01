@@ -9,7 +9,7 @@
 <!-- Checkout Section Begin -->
 <section class="checkout spad">
      <div class="container">
-          <form action="/checkout" class="checkout__form" method="post" id="update">
+          <form action="/checkout" class="checkout__form" method="post" id="store">
                @csrf
                <div class="row">
                     <div class="col-lg-7">
@@ -51,7 +51,7 @@
                               </div>
                          </div>
                          <div class="cart__btn update__btn my-5">
-                              <button type="submit" form="update" value="update" class="btn btn-md btn-light btn-check"><span class="icon_loading"></span> Update Bill</button>
+                              <button type="submit" form="store" name="update" value="update" class="btn btn-md btn-light btn-check"><span class="icon_loading"></span> Update Bill</button>
                               {{-- <a href="#"><span class="icon_loading"></span> Update Bill</a> --}}
                          </div>
                     </div>
@@ -84,7 +84,7 @@
                                         <li>Total <span>Rp.{{number_format($total + $cost, '0', ',', '.')}}</span></li>
                                    </ul>
                               </div>
-                              <button type="submit" class="site-btn" {{ $cost ? '' : 'disabled' }}>Buy</button>
+                              <button type="submit" form="store" name="buy" value="buy" class="site-btn" {{ $cost ? '' : 'disabled' }}>Buy</button>
                          </div>
                     </div>
                </div>

@@ -45,16 +45,20 @@ class CheckoutController extends Controller
         
         $city = City::pluck('name', 'city_id');
 
-        $cost = RajaOngkir::ongkosKirim([
-            'origin'        => 7,
-            'destination'   => $request->destination,
-            'weight'        => $request->weight,
-            'courier'       => $request->courier
-        ])->get();
-            
-        $weight = 0;
-        $cost = $cost[0]['costs'][0]['cost'][0]['value'];
-        // dd($cost);
-        return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
+        if ($request->has('update')) {
+            $cost = RajaOngkir::ongkosKirim([
+                'origin'        => 7,
+                'destination'   => $request->destination,
+                'weight'        => $request->weight,
+                'courier'       => $request->courier
+            ])->get();
+                
+            $weight = 0;
+            $cost = $cost[0]['costs'][0]['cost'][0]['value'];
+
+            return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
+        } else if ($request->has('buy')) {
+            return redirect('/');
+        }
     }
 }
