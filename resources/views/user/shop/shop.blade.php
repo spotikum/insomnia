@@ -23,7 +23,7 @@
                                         <div class="card-body">
                                             <ul>
                                                 @forelse ($category as $category)
-                                                    <li><a href="/shop/cat/{{ $category->id }}">{{ $category->category_name }}</a></li>
+                                                    <li><a href="#">{{ $category->category_name }}</a></li>
                                                 @empty
                                                     We don't have category
                                                 @endforelse
