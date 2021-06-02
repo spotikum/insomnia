@@ -65,7 +65,6 @@ Route::group(['middleware' => ['auth:user','verified']], function(){
 
 	Route::get('/checkout', [CheckoutController::class, 'index']);
 	Route::post('/checkout', [CheckoutController::class, 'buy']);
-	Route::get('/checkout/{id}', [CheckoutController::class, 'getCities']);
 
 	Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 });
