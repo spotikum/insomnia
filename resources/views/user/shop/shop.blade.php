@@ -73,7 +73,12 @@
                     @forelse ($product as $product)
                         <div class="col-lg-4 col-md-6 col-sm-6 mix women">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/public/images/produk/'.$product->gambar->image_name)}}">
+                                <input type="hidden" value="{{ $isTouch = isset($product->gambar->image_name) }}">
+                                @if (empty($isTouch))
+                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('assets/user/img/example.jpg') }}">
+                                @else
+                                    <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/public/images/produk/'.$product->gambar->image_name)}}">
+                                @endif
                                     @if ($product->updated_at >= $new)
                                         <div class="label new">
                                             New
