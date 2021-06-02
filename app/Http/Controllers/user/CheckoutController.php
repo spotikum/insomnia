@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Transaction;
 use App\Models\Transaction_detail;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class CheckoutController extends Controller
@@ -97,6 +99,32 @@ class CheckoutController extends Controller
         $pending = Transaction::where('status','=', 'unverified')->orWhere('status','=', 'verified')->get();
         $status = Transaction::where('status','=', 'unverified')->orWhere('status','=', 'verified')->count();
         return view('user.shop.status', compact('pending', 'status'));
+    }
+
+    function upload_image(Request $request, $id){
+        // dd($request);
+		$request->validate([
+			'images' => 'required'
+		],[
+			'images.required' => 'Pilih foto Bukti bayar terlebih dahulu'
+		]);
+
+		if ($request->hasFile('images')) {
+			try {
+				$image      = $request->file('images');
+                $fileName   = time() . '.' . $image->getClientOriginalExtension(); //mengubah namafile
+                $path = Storage::putFileAs('images/pay', $request->file('images'), $fileName); //upload file pada server
+
+                Transaction::where('id', $id)
+                    ->update([
+                        'proof_of_payment' => $fileName
+                    ]);
+			return back();
+            } catch (Exception $e) {
+                return back();
+            }
+        }
+        return back();
     }
 
     public function delete($id){
