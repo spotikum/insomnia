@@ -2,13 +2,12 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-7">
+            <div class="col-lg-5 col-md-6 col-sm-7">
                 <div class="footer__about">
                     <div class="footer__logo">
                         <a href="/"><img src="{{ asset('assets/user/img/logo.png') }}" alt=""></a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    cilisis.</p>
+                    <p>Ini merupakan web yang sangat, karena itu semoga anda senang dengan disini dan jangan sampai kamu karena ketika hujan turun semua akan baik saja. Good Luck.</p>
                     <div class="footer__payment">
                         <a href="https://www.mastercard.co.id"><img src="{{ asset('assets/user/img/payment/payment-1.png') }}" alt=""></a>
                         <a href="https://www.visa.co.id"><img src="{{ asset('assets/user/img/payment/payment-2.png') }}" alt=""></a>
@@ -18,25 +17,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-5">
+            <div class="col-lg-3 col-md-3 col-sm-5">
                 <div class="footer__widget">
                     <h6>Quick links</h6>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blogs</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-4">
-                <div class="footer__widget">
-                    <h6>Account</h6>
-                    <ul>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Orders Tracking</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/shop">Shop</a></li>
+                        <li><a href="/cart">Cart</a></li>
+                        <li><a href="https://github.com/spotikum">Contact</a></li>
                     </ul>
                 </div>
             </div>
