@@ -24,8 +24,8 @@
                                         <th>No</th>
                                         <th>Expired</th>
                                         <th>Status</th>
-                                        <th>Tagihan</th>
-                                        <th>File</th>
+                                        <th>Invoice</th>
+                                        <th>Proof of Payment</th>
                                         <th></th>
                                         <th></th>
                                    </tr>
@@ -39,7 +39,7 @@
                                              <td>
                                                   {{ $pending->timeout }}
                                              </td>
-                                             <td>
+                                             <td class="cart__quantity">
                                                   {{ $pending->status }}
                                              </td>
                                              <td class="cart__price">
@@ -47,7 +47,7 @@
                                              </td>
                                              <td>
                                                   @if ($pending->proof_of_payment)
-                                                  {{ $pending->proof_of_payment }}
+                                                  <a href="{{asset('/storage/images/pay/'.$pending->proof_of_payment )}}">{{ $pending->proof_of_payment }}</a>
                                                   </td><td>
                                                   @else
                                                   <form action="/status/upload/{{ $pending->id }}" method="POST" enctype="multipart/form-data" class="checkout__form" id="image">
