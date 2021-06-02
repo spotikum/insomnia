@@ -43,9 +43,9 @@
                                         <label class="font-weight-bold">Courier</label>
                                         <select class="form-control kurir" name="courier">
                                              <option value="0">-- Courier --</option>
-                                             <option value="jne">JNE</option>
-                                             <option value="pos">POS</option>
-                                             <option value="tiki">TIKI</option>
+                                             @foreach ($courier as $courier)
+                                                  <option value="{{ $courier->code }}">{{ $courier->courier }}</option>
+                                             @endforeach
                                         </select>
                                    </div>
                               </div>

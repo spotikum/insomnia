@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Courier;
 use App\Models\Product;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class CheckoutController extends Controller
     {
         $user_id = Auth::user()->id;
         $product = Product::get();
+        $courier = Courier::get();
         $cart = Cart::where('user_id', $user_id)->where('status', 'notyet')->get();
         $total = 0 ;
         $weight = 0 ;
@@ -28,13 +30,14 @@ class CheckoutController extends Controller
 
         $city = City::pluck('name', 'city_id');
 
-        return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
+        return view('user.shop.checkout', compact('product', 'courier', 'cart', 'total', 'city', 'weight', 'cost'));
     }
 
     public function buy(Request $request)
     {
         $user_id = Auth::user()->id;
         $product = Product::get();
+        $courier = Courier::get();
         $cart = Cart::where('user_id', $user_id)->where('status', 'notyet')->get();
         $total = 0 ;
         
@@ -52,7 +55,7 @@ class CheckoutController extends Controller
             $cost = $cost[0]['costs'][0]['cost'][0]['value'];
             
             // return redirect('/checkout');
-            return view('user.shop.checkout', compact('product', 'cart', 'total', 'city', 'weight', 'cost'));
+            return view('user.shop.checkout', compact('product', 'courier', 'cart', 'total', 'city', 'weight', 'cost'));
         } else if ($request->has('buy')) {
             dd($request);
             Transaction::create([
