@@ -9,6 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
         <title>Insomnia</title>
+        <link rel="shortcut icon" href="{{ asset('assets/user/img/icon.png') }}" />
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
