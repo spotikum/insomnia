@@ -61,7 +61,7 @@ class CheckoutController extends Controller
             // $provinsi = RajaOngkir::kota()->find($request->destination);
             // dd($request);
             Transaction::create([
-                'timeout' => Carbon::yesterday(),
+                'timeout' => Carbon::tomorrow(),
                 'address' => $request->street,
                 'regency' => $request->destination,
                 'province' => $request->destination,
