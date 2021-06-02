@@ -57,20 +57,28 @@ class CheckoutController extends Controller
             // return redirect('/checkout');
             return view('user.shop.checkout', compact('product', 'courier', 'cart', 'total', 'city', 'weight', 'cost'));
         } else if ($request->has('buy')) {
-            dd($request);
+            $courier_id = Courier::where('code', $request->courier)->get('id')->first();
+            // $provinsi = RajaOngkir::kota()->find($request->destination);
+            // dd($request);
             Transaction::create([
                 'timeout' => Carbon::yesterday(),
                 'address' => $request->street,
                 'regency' => $request->destination,
-                'province' => $request,
-                'total' => $request,
-                'shipping_cost' => $request,
-                'sub_total' => $request,
-                'user_id' => $request,
-                'courier_id' => $request,
-                'proof_of_payment' => $request,
+                'province' => $request->destination,
+                'total' => $request->total,
+                'shipping_cost' => $request->cost,
+                'sub_total' => $request->subtotal,
+                'user_id' => $user_id,
+                'courier_id' => $courier_id->id,
+                'proof_of_payment' => null,
                 'status' => 'unverified'
             ]);
+
+            Cart::where('status', 'notyet')
+            ->update([
+                'status' => 'checkedout'
+            ]);
+
             return redirect('/');
         }
     }

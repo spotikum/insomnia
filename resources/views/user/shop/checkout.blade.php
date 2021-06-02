@@ -74,14 +74,17 @@
                               <div class="checkout__order__total">
                                    <ul>
                                         <li>Subtotal <span>Rp.{{number_format($total, '0', ',', '.')}}</span></li>
+                                        <input type="hidden" name="subtotal" value="{{ $total }}">
                                         @if ($cost)
                                              <li>Postal fee <span>Rp.{{number_format($cost, '0', ',', '.')}}</span></li>
+                                             <input type="hidden" name="cost" value="{{ $cost }}">
                                         @endif
                                    </ul>
                               </div>
                               <div class="checkout__order__total">
                                    <ul>
                                         <li>Total <span>Rp.{{number_format($total + $cost, '0', ',', '.')}}</span></li>
+                                        <input type="hidden" name="total" value="{{ $total + $cost }}">
                                    </ul>
                               </div>
                               <button type="submit" form="store" name="buy" value="buy" class="site-btn" {{ $cost ? '' : 'disabled' }}>Buy</button>
