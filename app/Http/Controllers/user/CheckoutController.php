@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Transaction;
+use App\Models\Transaction_detail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
@@ -54,12 +55,10 @@ class CheckoutController extends Controller
             $weight = 0;
             $cost = $cost[0]['costs'][0]['cost'][0]['value'];
             
-            // return redirect('/checkout');
             return view('user.shop.checkout', compact('product', 'courier', 'cart', 'total', 'city', 'weight', 'cost'));
         } else if ($request->has('buy')) {
             $courier_id = Courier::where('code', $request->courier)->get('id')->first();
-            // $provinsi = RajaOngkir::kota()->find($request->destination);
-            // dd($request);
+
             Transaction::create([
                 'timeout' => Carbon::tomorrow(),
                 'address' => $request->street,
@@ -73,6 +72,17 @@ class CheckoutController extends Controller
                 'proof_of_payment' => null,
                 'status' => 'unverified'
             ]);
+
+            foreach ($cart as $cart) {
+                $transaction_id = Transaction::latest()->first();
+                Transaction_detail::create([
+                    'transaction_id' => $transaction_id->id,
+                    'product_id' => $cart->product_id,
+                    'qty' => $cart->qty,
+                    'discount' => 0,
+                    'selling_price' => $cart->product->price
+                ]);
+            }
 
             Cart::where('status', 'notyet')
             ->update([
