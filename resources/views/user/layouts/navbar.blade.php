@@ -23,6 +23,9 @@
                         @if ( request()->is('checkout*'))
                         <li class="active"><a href="/checkout">Checkout</a></li>
                         @endif
+                        @if ( request()->is('status*'))
+                        <li class="active"><a href="/status">Status</a></li>
+                        @endif
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
@@ -40,13 +43,13 @@
                     </div>
                     <ul class="header__right__widget">
                         <li>
-                            <a href="#">
+                            <a href="/status">
                                 <span class="icon_info_alt"></span>
                                 {{-- <div class="tip">2</div> --}}
                             </a>
                         </li>
                         <li>
-                            <a href="cart">
+                            <a href="/cart">
                                 <span class="icon_cart_alt"></span>
                                 {{-- <div class="tip">2</div> --}}
                             </a>

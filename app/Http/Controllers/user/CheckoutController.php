@@ -92,4 +92,10 @@ class CheckoutController extends Controller
             return redirect('/');
         }
     }
+
+    public function status(){
+        $pending = Transaction::where('status','=', 'unverified')->orWhere('status','=', 'verified')->get();
+        // dd($pending);
+        return view('user.shop.status', compact('pending'));
+    }
 }
