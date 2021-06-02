@@ -26,8 +26,7 @@
                         @if ( request()->is('status*'))
                         <li class="active"><a href="/status">Status</a></li>
                         @endif
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="https://github.com/spotikum/insomnia">Contact</a></li>
                     </ul>
                 </nav>
             </div>
