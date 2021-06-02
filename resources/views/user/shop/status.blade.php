@@ -5,6 +5,12 @@
      <span>Status</span>
 @endsection
 
+@section('status')
+     @if ($status>0)
+     <div class="tip">{{ $status }}</div>
+     @endif
+@endsection
+
 @section('content')
 <!-- Shop Cart Section Begin -->
 <section class="shop-cart spad">

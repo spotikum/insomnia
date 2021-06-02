@@ -5,6 +5,12 @@
      <span>Cart</span>
 @endsection
 
+@section('cart')
+     @if ($cart_count>0)
+          <div class="tip">{{ $cart_count }}</div>
+     @endif
+@endsection
+
 @section('content')
 <!-- Shop Cart Section Begin -->
 <section class="shop-cart spad">

@@ -95,8 +95,8 @@ class CheckoutController extends Controller
 
     public function status(){
         $pending = Transaction::where('status','=', 'unverified')->orWhere('status','=', 'verified')->get();
-        // dd($pending);
-        return view('user.shop.status', compact('pending'));
+        $status = Transaction::where('status','=', 'unverified')->orWhere('status','=', 'verified')->count();
+        return view('user.shop.status', compact('pending', 'status'));
     }
 
     public function delete($id){

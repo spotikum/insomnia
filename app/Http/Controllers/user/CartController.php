@@ -16,13 +16,10 @@ class CartController extends Controller
         $user_id = Auth::user()->id;
         $product = Product::get();
         $cart = Cart::where('user_id', $user_id)->where('status', 'notyet')->get();
+        $cart_count = Cart::where('user_id', $user_id)->where('status', 'notyet')->count();
         $total = 0 ;
 
-        return view('user.shop.cart')
-            ->with('product', $product)
-            ->with('total', $total)
-            ->with('cart', $cart)
-        ;
+        return view('user.shop.cart', compact('product', 'total', 'cart', 'cart_count'));
     }
 
     public function buy($id)

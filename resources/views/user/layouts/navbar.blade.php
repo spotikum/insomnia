@@ -45,13 +45,13 @@
                         <li>
                             <a href="/status">
                                 <span class="icon_info_alt"></span>
-                                {{-- <div class="tip">2</div> --}}
+                                @yield('status')
                             </a>
                         </li>
                         <li>
                             <a href="/cart">
                                 <span class="icon_cart_alt"></span>
-                                {{-- <div class="tip">2</div> --}}
+                                @yield('cart')
                             </a>
                         </li>
                     </ul>
