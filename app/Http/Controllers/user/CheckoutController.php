@@ -91,7 +91,7 @@ class CheckoutController extends Controller
                 'status' => 'checkedout'
             ]);
 
-            return redirect('/');
+            return redirect('/status');
         }
     }
 
