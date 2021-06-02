@@ -98,4 +98,12 @@ class CheckoutController extends Controller
         // dd($pending);
         return view('user.shop.status', compact('pending'));
     }
+
+    public function delete($id){
+        Transaction::where('id', $id)
+            ->update([
+                'status' => 'canceled'
+            ]);
+        return back();
+    }
 }

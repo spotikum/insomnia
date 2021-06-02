@@ -39,10 +39,19 @@
                                                   Rp. {{number_format($pending->total, '0', ',', '.')}}
                                              </td>
                                              <td>
-                                                  Up
+                                                  @if ($pending->proof_of_payment)
+                                                       {{ $pending->proof_of_payment }}
+                                                  @else
+                                                       <form>
+                                                            <div class="form-group">
+                                                                 <label for="exampleFormControlFile1"></label>
+                                                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                            </div>
+                                                       </form>
+                                                  @endif
                                              </td>
                                              <td class="cart__close">
-                                                  <a href="cart/delete/">
+                                                  <a href="/status/delete/{{ $pending->id }}">
                                                        <span class="icon_close"></span>
                                                   </a>
                                              </td>
